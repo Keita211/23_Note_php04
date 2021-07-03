@@ -22,8 +22,6 @@ $life_flg = 0; // 0なら有効。1は退会user。
 
 
 //SQLを用意
-$pdo>- prepare();
-
 $stmt = $pdo->prepare(
     "INSERT INTO kadai04_table_userkanri(id,name,lid, lpw,kanri_flg,life_flg, paid_flg)
     VALUES (NULL , :name, :lid, :lpw, :kanri_flg,:life_flg, :paid_flg)"
@@ -40,7 +38,7 @@ $stmt->bindValue(":paid_flg",$paid_flg,PDO::PARAM_INT);
 // 実行
 $status = $stmt->execute();
 
-if($status==false){
+xif($status==false){
     sql_error($stmt);
   }else{
     redirect('index.php');
