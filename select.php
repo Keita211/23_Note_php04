@@ -5,7 +5,7 @@
 require_once('funcs.php');
 $pdo = db_conn();
 
-$stmt = $pdo->prepare('SELECT * FROM kadai03_table_01');
+$stmt = $pdo->prepare('SELECT * FROM kadai04_table_content');
 $statuses = $stmt->execute();
 
 // データ表示

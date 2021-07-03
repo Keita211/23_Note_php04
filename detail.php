@@ -6,7 +6,7 @@ $pdo = db_conn();
 $id = $_GET['id'];
 // echo $id;
 
-$stmt = $pdo->prepare("SELECT * FROM kadai03_table_01 WHERE id =:id");
+$stmt = $pdo->prepare("SELECT * FROM kadai04_table_content WHERE id =:id");
 $stmt -> bindValue(':id',$id,PDO::PARAM_INT);
 $status = $stmt->execute();
 
@@ -53,6 +53,8 @@ if($status = false) {
                 <label>日付：<input type="date" name="date" value="<?= $result['date']?>"></label><br>
                 <label>URL：<input type="text" name="url" value="<?= $result['url']?>"></label><br>
                 <label>点数：<input type="number" name="score"value="<?= $result['score']?>" max="5", min="1"></label><br>
+                <label>公開範囲：<input type="radio" name="open_flg"  value="0">有料会員のみ</label>
+                <label><input type="radio" name="open_flg" value ="1">全会員</label><br>
                 <label>感想：<br><textarea name="content" rows="4" cols="40" ><?= $result['content']?></textarea></label><br>
                 <input type="hidden" name = "id" value="<?= $result['id']?>">
                 <input type="submit" value="送信">

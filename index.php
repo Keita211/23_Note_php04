@@ -31,6 +31,8 @@
                 <label>日付：<input type="date" name="date"></label><br>
                 <label>URL：<input type="text" name="url"></label><br>
                 <label>点数：<input type="number" name="score" max="5", min="1"></label><br>
+                <label>公開範囲：<input type="radio" name="open_flg"  value="0">有料会員のみ</label>
+                <label><input type="radio" name="open_flg" value ="1">全会員</label><br>
                 <label>感想：<br><textarea name="content" rows="4" cols="40"></textarea></label><br>
                 <input type="submit" value="送信">
             </fieldset>

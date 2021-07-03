@@ -7,6 +7,7 @@ $date = $_POST['date'];
 $url  = $_POST['url'];
 $score= $_POST['score'];
 $content= $_POST['content'];
+$open_flg= $_POST['open_flg'];
 $id= $_POST['id'];
 
 // DB接続
@@ -16,7 +17,7 @@ $pdo = db_conn();
 // sql用意
 
 $stmt = $pdo->prepare(
-    "UPDATE kadai03_table_01 SET name= :name, date= :date, url= :url, score= :score, content=:content, indate= sysdate()
+    "UPDATE kadai04_table_content SET name= :name, date= :date, url= :url, score= :score, content=:content, indate= sysdate(), open_flg= :open_flg
     WHERE id= :id"
 ); 
 
@@ -27,6 +28,7 @@ $stmt-> bindValue(':date',date("Y-m-d", strtotime($date)), PDO::PARAM_STR);
 $stmt-> bindValue(':url',$url, PDO::PARAM_STR );
 $stmt-> bindValue(':score',$score, PDO::PARAM_INT );
 $stmt-> bindValue(':content',$content, PDO::PARAM_STR );
+$stmt-> bindValue(':open_flg',$open_flg, PDO::PARAM_INT );
 $stmt-> bindValue(':id',$id, PDO::PARAM_INT );
 
 // 実行

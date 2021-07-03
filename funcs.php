@@ -10,11 +10,10 @@ function h($str)
 function db_conn (){
     try{
      //開発用Local環境//
-    $db_name = 'kadai_php03';
+    $db_name = 'kadai_php04';
     $db_id = 'root';
     $db_pw = 'root';
     $db_host = 'localhost';
-    
     
     $pdo = new PDO('mysql:dbname='.$db_name.';charset=utf8;host='.$db_host,$db_id,$db_pw);
     return $pdo;
