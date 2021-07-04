@@ -22,9 +22,12 @@ if($status==false){
 $val = $stmt->fetch();
 
 if (password_verify($lpw,$val['lpw'])){
+    $alert = "<script type='text/javascript'>alert('ログイン成功！');</script>";
+    echo $alert;
     $_SESSION['cheked_id'] =session_id();
     $_SESSION['kanri_flg'] =$val['kanri_flg'];
     $_SESSION['name'] =$val['name'];
+    redirect('index.php');
 }else{
     redirect('login.php');
 };

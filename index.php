@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>データ登録</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <style>
         div {
             padding: 10px;
@@ -17,7 +18,9 @@
     <header>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
-                <div class="navbar-header"><a class="navbar-brand" href="select.php">データ一覧</a></div>
+                
+            <div class="navbar-header"><a class="navbar-brand" href="welcome.html">TOPページ</a></div>
+                <div id="data" class="navbar-header"><a class="navbar-brand" href="select.php">データ一覧</a></div>             
             </div>
         </nav>
     </header>
@@ -41,3 +44,4 @@
 </body>
 
 </html>
+

@@ -1,31 +1,58 @@
 <?php
 
 
+session_start();
+
+$name =$_SESSION['name'];
+$kanri_flg =$_SESSION['kanri_flg'];
+
 // SQL, PDOの準備
 require_once('funcs.php');
 $pdo = db_conn();
 
 $stmt = $pdo->prepare('SELECT * FROM kadai04_table_content');
+
 $statuses = $stmt->execute();
 
 // データ表示
 
-$view = "";
-
-if($status = false){
-    sqlerror($status);
+if($name == ""){
+    $alert = "<script type='text/javascript'>alert('登録データを閲覧するには会員登録してログインしてください');</script>";
+    echo $alert;
 }else{
+if($kanri_flg == 0){ // 管理権限者だけに削除タグを表示
+    $view = "";
+    if($status = false){
+        sqlerror($status);
+    }else{
+        while($result = $stmt->fetch(\PDO::FETCH_ASSOC)){
+        $view .= '<p>';
+        $view .= '<a href= "detail.php?id='.$result["id"].'">';
+        $view .= $result['indate'].':'.$result['name'];
+        $view .= '</a>';
+        $view .= '<a href= "delete.php?id='.$result["id"].'">';
+        $view .= '[ 削除 ]';    
+        $view .= '</a>';
+        $view .= '</p>';
+        }
+    }}else{ // 一般ユーザーには削除タグは表示させない
+    $view = "";
+    if($status = false){
+    sqlerror($status);
+    }else{
     while($result = $stmt->fetch(\PDO::FETCH_ASSOC)){
-    $view .= '<p>';
-    $view .= '<a href= "detail.php?id='.$result["id"].'">';
-    $view .= $result['indate'].':'.$result['name'];
-    $view .= '</a>';
-    $view .= '<a href= "delete.php?id='.$result["id"].'">';
-    $view .= '[ 削除 ]';    
-    $view .= '</a>';
-    $view .= '</p>';
+        $view .= '<p>';
+        $view .= '<a href= "detail.php?id='.$result["id"].'">';
+        $view .= $result['indate'].':'.$result['name'];
+        $view .= '</a>';
+        $view .= '</p>';
+        }
+        }
     }
-}
+};
+
+
+
 ?>
 
 
@@ -53,7 +80,10 @@ if($status = false){
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <a class="navbar-brand" href="welcome.html">TOPページ</a>
                     <a class="navbar-brand" href="index.php">データ登録</a>
+                    <a class="navbar-brand" href="login.php">ログイン</a>
+                    <a class="navbar-brand" href="logout.php">ログアウト</a>
                 </div>
             </div>
         </nav>
